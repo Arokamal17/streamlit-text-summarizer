@@ -4,11 +4,7 @@ import os
 from text_summarizer.functions import summarize
 
 try:
-  openai.api_type = "azure"
-  openai.api_base = "https://chat-gpt-a1.openai.azure.com/"
-  openai.api_version = "2022-12-01"
-  openai.api_key = os.getenv("OPENAI_API_KEY")
-  # openai.api_key = os.getenv('OPENAI_KEY')
+  openai.api_key = os.getenv('OPENAI_KEY')
   
   if "summary" not in st.session_state:
       st.session_state["summary"] = ""
