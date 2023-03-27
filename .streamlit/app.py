@@ -34,16 +34,12 @@ try:
   else:
       input_text = st.text_area(label="Enter full text:", value="", height=250)
 
-  if input_text:
-    st.button(
+  if input_text:st.button(
       "Submit",
       on_click=summarize,
       kwargs={"prompt": input_text},
-    )
-    output_text = st.text_area(label="Summarized text:", value=st.session_state.get("summary", ""), height=250)
-  else:
-    st.write("Please input text or document link.")
-  
+  )
+  output_text = st.text_area(label="Summarized text:", value=st.session_state.get("summary", ""), height=250)
 except:
-      st.write('There was an error =(')
+      st.write("Please input text or document link.")
 
