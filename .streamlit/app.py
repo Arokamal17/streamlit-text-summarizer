@@ -16,17 +16,17 @@ try:
   
   st.title("Text Summarizer")
 
-  input_type = st.radio(
-      "Select input type:",
-      ("Document link", "Text")
+  option = st.selectbox(
+      "Choose an input source:",
+      ("Text", "URL")
   )
 
-  if input_type == "Text":
+  if option == "Text":
     input_text = st.text_area(label="Enter full text:", value="", height=250)
     if st.button("Submit"):
         st.session_state["summary"] = summarize(input_text)
 
-  elif input_type == "Document link":
+  elif option == "Document link":
       url = st.text_input("Enter the URL of the webpage:", "")
       if st.button("Submit"):
           try:
