@@ -2,7 +2,11 @@ import openai
 import streamlit as st
 
 def summarize(prompt):
-    augmented_prompt = f"summarize this text: {prompt}"
+    chunk_size = 8000
+    chunks = [prompt[i:i+chunk_size] for i in range(0, len(prompt), chunk_size)]
+    summary = []
+    for chunk in chunks:
+        augmented_prompt = f"summarize this text: {chunk}"
     try:
         st.session_state["summary"] = openai.Completion.create(
             engine="Daniel",
@@ -14,6 +18,7 @@ def summarize(prompt):
             presence_penalty=0,
             best_of=1,
             stop=None
-        )["choices"][0]["text"]
+        )
+        summary.append(response.choices[0].text.strip())
     except:
         st.write('There was an error =(')

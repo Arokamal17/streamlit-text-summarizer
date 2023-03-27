@@ -14,32 +14,25 @@ try:
   if "summary" not in st.session_state:
       st.session_state["summary"] = ""
   
-  st.title("Text Summarizer")
+      st.title("Text Summarizer")
+      input_type = st.radio('Select input type', ('Text', 'URL'))
+      if input_type == 'Text':
+          input_text = st.text_area(label="Enter full text:", value="", height=250)
+          if st.button("Submit"):
+              summary = summarize(input_text)
+              if summary:
+                  st.session_state["summary"] = summary
+                  st.text_area(label="Summarized text:", value=summary, height=250)
+      else:
+          input_url = st.text_input(label="Enter document URL:", value="")
+          if st.button("Submit"):
+              # fetch the document text using requests.get() or any other method
+              document_text = ""
+              summary = summarize(document_text)
+              if summary:
+                  st.session_state["summary"] = summary
+                  st.text_area(label="Summarized text:", value=summary, height=250)
 
-  input_type = st.radio(
-      "Select input type:",
-      ("Document link", "Text")
-  )
-
-  if input_type == "Document link":
-      document_url = st.text_input("Enter document link:")
-      if document_url:
-          response = requests.get(document_url)
-          if response.status_code == 200:
-              input_text = response.text
-              st.write(f"Document summary for: {document_url}")
-              st.write(f"{input_text[:100]}...")
-          else:
-              st.write("Error: Failed to retrieve document from URL.")
-  else:
-      input_text = st.text_area(label="Enter full text:", value="", height=250)
-
-  input_text:st.button(
-      "Submit",
-      on_click=summarize,
-      kwargs={"prompt": input_text},
-  )
-  output_text = st.text_area(label="Summarized text:", value=st.session_state.get("summary", ""), height=250)
 except:
-      st.write("Please input text or document link.")
+    st.write('There was an error =(')
 
