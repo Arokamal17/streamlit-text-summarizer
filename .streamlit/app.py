@@ -53,7 +53,8 @@ try:
             # fetch the document text using requests.get() or any other method
             document_text = requests.get(input_url)
             st.session_state["summary"] =  summarize(document_text.text)
-            st.text_area(label="Summarized text:", value=st.session_state.get("summary", ""), height=250)
+            summary = st.session_state.get("summary", "")
+            st.text_area(label="Summarized text:", value=summary, height=250)
         except:
               st.write("Invalid URL or unable to retrieve content.")
 
