@@ -20,5 +20,7 @@ def summarize(prompt):
             stop=None
         )
         summary.append(response.choices[0].text.strip())
-    except:
-        st.write('There was an error =(')
+    except Exception as e:
+            st.write('Error:', e)
+            return None
+    return '\n'.join(summary)
