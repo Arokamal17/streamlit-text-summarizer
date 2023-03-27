@@ -8,7 +8,7 @@ def summarize(prompt):
     for chunk in chunks:
         augmented_prompt = f"summarize this text: {chunk}"
     try:
-        st.session_state["summary"] = openai.Completion.create(
+        response = openai.Completion.create(
             engine="Daniel",
             prompt=augmented_prompt,
             temperature=0.3,
