@@ -15,7 +15,7 @@ def summarize(prompt):
             model="text-davinci-003",
             prompt=augmented_prompt,
             temperature=.5,
-            max_tokens=1000,
+            max_tokens=8000,
         )
         summary.append(response.choices[0].text.strip())
     except Exception as e:
