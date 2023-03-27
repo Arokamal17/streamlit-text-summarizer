@@ -52,7 +52,7 @@ try:
         try:
             # fetch the document text using requests.get() or any other method
             document_text = requests.get(input_url)
-            st.session_state["summary"] =  summarize(document_text.text)
+            st.session_state["summary"] =  summarize(document_text)
             summary = st.session_state.get("summary", "")
             st.text_area(label="Summarized text:", value=summary, height=250)
         except:
