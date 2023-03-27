@@ -50,7 +50,7 @@ try:
       input_url = st.text_input(label="Enter document URL:", value="")
       if st.button("Submit"):
           # fetch the document text using requests.get() or any other method
-          document_text = ""
+          document_text = requests.get(input_url)
           summary = summarize(document_text)
           if summary:
               st.session_state["summary"] = summary
