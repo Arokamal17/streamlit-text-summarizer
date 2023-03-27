@@ -12,15 +12,10 @@ def summarize(prompt):
         augmented_prompt = f"summarize this text: {chunk}"
     try:
         response = openai.Completion.create(
-            engine="Daniel",
+            model="text-davinci-003",
             prompt=augmented_prompt,
-            temperature=0.3,
-            max_tokens=250,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0,
-            best_of=1,
-            stop=None
+            temperature=.5,
+            max_tokens=1000,
         )
         summary.append(response.choices[0].text.strip())
     except Exception as e:
@@ -29,11 +24,11 @@ def summarize(prompt):
     return '\n'.join(summary)
 
 try:
-  openai.api_type = "azure"
-  openai.api_base = "https://chat-gpt-a1.openai.azure.com/"
-  openai.api_version = "2022-12-01"
-  openai.api_key = os.getenv("OPENAI_API_KEY")
-  # openai.api_key = os.getenv('OPENAI_KEY')
+  # openai.api_type = "azure"
+  # openai.api_base = "https://chat-gpt-a1.openai.azure.com/"
+  # openai.api_version = "2022-12-01"
+  # openai.api_key = os.getenv("OPENAI_API_KEY")
+  openai.api_key = os.getenv('OPENAI_KEY')
   
 
 
