@@ -34,7 +34,7 @@ try:
   else:
       input_text = st.text_area(label="Enter full text:", value="", height=250)
 
-  if input_text:st.button(
+  input_text:st.button(
       "Submit",
       on_click=summarize,
       kwargs={"prompt": input_text},
