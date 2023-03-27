@@ -51,7 +51,7 @@ try:
       if st.button("Submit"):
           # fetch the document text using requests.get() or any other method
           document_text = requests.get(input_url)
-          summary = summarize(document_text)
+          summary =  summarize(document_text.text)
           if summary:
               st.session_state["summary"] = summary
               st.text_area(label="Summarized text:", value=summary, height=250)
