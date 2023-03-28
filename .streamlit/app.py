@@ -4,7 +4,7 @@ import os
 from text_summarizer.functions import summarize
 
 try:
-  openai.api_key = os.getenv('OPENAI_KEY')
+  openai.api_key = "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"
   
   if "summary" not in st.session_state:
       st.session_state["summary"] = ""
@@ -21,3 +21,8 @@ try:
 except:
   st.write('There was an error =(')
 
+    # OPENAI_API_KEY = ''
+    # with open('.\key.json', 'r') as file_to_read:
+    #     json_data = json.load(file_to_read)
+    #     OPENAI_API_KEY = json_data["OPENAI_API_KEY"]
+    # openai.api_key = os.getenv('OPENAI_KEY')

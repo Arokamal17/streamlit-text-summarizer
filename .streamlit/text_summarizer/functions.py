@@ -11,4 +11,4 @@ def summarize(prompt):
             max_tokens=1000,
         )["choices"][0]["text"]
     except:
-        st.write('There was an error =(')
+        st.write('There was an error in model side =(')
