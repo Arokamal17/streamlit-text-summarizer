@@ -9,10 +9,15 @@ def summarize(prompt):
         augmented_prompt = f"summarize this text: {chunk}"
     try:
         response = openai.Completion.create(
-            model="text-davinci-003",
+            engine="Daniel",
             prompt=augmented_prompt,
-            temperature=.5,
-            max_tokens=1000,
+            temperature=1,
+            max_tokens=100,
+            top_p=0.5,
+            frequency_penalty=0,
+            presence_penalty=0,
+            best_of=1,
+            stop=None
         )
         summary.append(response.choices[0].text.strip())
     except Exception as e:
